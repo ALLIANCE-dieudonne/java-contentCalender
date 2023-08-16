@@ -38,4 +38,8 @@ public class ContentCollectionRepository {
     public boolean existsById(Integer id) {
         return contentList.stream().filter(c -> c.id().equals(id)).count() == 1;
     }
+
+    public void delete(Integer id) {
+        contentList.removeIf(c -> c.id().equals(id));
+    }
 }

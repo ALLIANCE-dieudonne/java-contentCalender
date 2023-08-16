@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/content")
+@CrossOrigin
 public class ContentController {
     private final ContentCollectionRepository repository;
 
@@ -41,4 +42,10 @@ public class ContentController {
         }
         repository.save(content);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id){
+        repository.delete(id);
+    }
+
 }
