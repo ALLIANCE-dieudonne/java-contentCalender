@@ -1,6 +1,7 @@
 package com.alliance.contentcalender.controllers;
 
 import com.alliance.contentcalender.model.Content;
+import com.alliance.contentcalender.model.Status;
 import com.alliance.contentcalender.repository.ContentCollectionRepository;
 import com.alliance.contentcalender.repository.ContentRepository;
 import jakarta.validation.Valid;
@@ -48,6 +49,11 @@ public class ContentController {
     @GetMapping("/filter/{title}")
     public List<Content> filterByTitle(@PathVariable String title) {
         return repository.findAllByTitleContains(title);
+    }
+
+    @GetMapping("/filter/status/{status}")
+    public List<Content> filterByStatus(@PathVariable Status status) {
+        return repository.listByStatus(status);
     }
 
     @DeleteMapping("/{id}")
