@@ -2,6 +2,7 @@ package com.alliance.contentcalender.controllers;
 
 import com.alliance.contentcalender.model.Content;
 import com.alliance.contentcalender.repository.ContentCollectionRepository;
+import com.alliance.contentcalender.repository.ContentRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,9 @@ import java.util.List;
 @RequestMapping("/api/content")
 @CrossOrigin
 public class ContentController {
-    private final ContentCollectionRepository repository;
+    private final ContentRepository repository;
 
-    public ContentController(ContentCollectionRepository repository) {
+    public ContentController(ContentRepository repository) {
         this.repository = repository;
     }
 
@@ -44,9 +45,14 @@ public class ContentController {
         repository.save(content);
     }
 
+    @GetMapping("/filter/{title}")
+    public List<Content> filterByTitle(@PathVariable String title) {
+        return repository.findAllByTitleContains(title);
+    }
+
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
-        repository.delete(id);
+    public void delete(@PathVariable Integer id) {
+        repository.deleteById(id);
     }
 
 }
