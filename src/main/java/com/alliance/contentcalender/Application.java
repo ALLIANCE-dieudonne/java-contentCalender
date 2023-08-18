@@ -1,5 +1,6 @@
 package com.alliance.contentcalender;
 
+import com.alliance.contentcalender.config.ContentCalenderProperties;
 import com.alliance.contentcalender.model.Content;
 import com.alliance.contentcalender.model.Status;
 import com.alliance.contentcalender.model.Type;
@@ -7,6 +8,7 @@ import com.alliance.contentcalender.repository.ContentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
+@EnableConfigurationProperties(ContentCalenderProperties.class)
 @SpringBootApplication
 public class Application {
 
